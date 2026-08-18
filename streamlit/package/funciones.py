@@ -9,8 +9,8 @@ def carga_de_datos():
     Returns:
         df (dataframe): Dataframe con toda la información de SIGAF.
     """
-    file_path = DATA_PATH / "Base Consolidada.xlsx"
+    file_path = DATA_PATH / "Base Consolidada 2.xlsx"
     if not file_path.exists():
-        raise FileNotFoundError("No se encontró el archivo \"Base consolidada.xlsx\".")
+        raise FileNotFoundError("No se encontró el archivo \"Base Consolidada.xlsx\".")
     df = pd.read_excel(file_path, sheet_name="SIGAF")
     return df
