@@ -24,7 +24,7 @@ def conditions(df):
     Returns:
         values2 (list): Lista con los valores para el gráfico de distribución de partidas.
     """
-    con_partida = {"Con partida.", "Partida repetida, esta es la madre.", "Partida repetida, esta es la agregación.", "Revisar. Son varias manzanas con varias partidas."}
+    con_partida = {"Epecuén.", "Con partida.", "Partida repetida, esta es la madre.", "Partida repetida, esta es la agregación.", "Revisar. Son varias manzanas con varias partidas."}
     cantidad_con_partida = df["Condición"].isin(con_partida).sum()
     return [cantidad_con_partida, len(df) - cantidad_con_partida]
 
@@ -45,7 +45,7 @@ def generar_mapa():
     Args:
         None.
     Returns:
-        m (map): Mapa para las fichas con coordenadas.
+        m (folium.Map): Mapa para las fichas con coordenadas.
     """
     attr = (
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
@@ -61,3 +61,21 @@ def generar_mapa():
         attr=attr
     )
     return m
+
+def agregar_coordenadas(columna):
+    """
+    Agrega todas las coordenadas de una columna a un mapa.
+    Args:
+        columna (Series): Series con todas las coordenadas.
+    Returns:
+        mapa (folium.Map): Mapa donde estararán todas las fichas.
+    """
+    mapa = generar_mapa()
+    for coord in columna:
+        match coord:
+            case "-":
+                pass
+            case _:
+                coords = coord.split(",")
+                folium.Marker(coords, popup=coord, icon=folium.Icon(color="green")).add_to(mapa)
+    return mapa
