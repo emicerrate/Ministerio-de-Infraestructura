@@ -59,6 +59,6 @@ if cuenta:
         # Mapa para las partidas con coordenadas
         st.subheader("Mapa con las coordenadas")
         mapa = generar_mapa()
-        st_folium(mapa)
+        st_folium(mapa, returned_objects=[])
     except:
         st.warning("No existe información para la cuenta seleccionada.")
