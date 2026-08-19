@@ -49,7 +49,7 @@ if cuenta:
         values3 = coordenates(df_reducido)
         labels3 = ["Tienen coordenadas", "No tienen coordenadas"]
         ax[2].pie(values3, labels=labels3, colors=["green", "red"],
-                  autopct=lambda p: '{:.1f}%\n({:.0f})'.format(p, p * sum(values2) / 100))
+                  autopct=lambda p: '{:.1f}%\n({:.0f})'.format(p, p * sum(values3) / 100))
         ax[2].set_title("COMPARACIÓN COORDENADAS")
 
         # Ajustamos los gráficos y los mostramos
